@@ -88,9 +88,10 @@ export function Hero({ profile }: { profile: Profile }) {
           About
         </p>
         <div className="mt-10 grid gap-12 lg:grid-cols-[1.5fr_1fr] lg:gap-24">
-          <p className="font-display text-4xl leading-[1.05] font-bold tracking-[-0.03em] sm:text-5xl">
-            I build end-to-end web products: Angular frontends, Spring Boot and
-            Node.js services, and the CI/CD and cloud plumbing that ships them.
+          <p className="font-display text-4xl leading-[1.05] font-bold tracking-[-0.03em] sm:text-6xl">
+            I build web products end to end, from{" "}
+            <span className="whitespace-nowrap text-accent">Spring Boot</span> to{" "}
+            <span className="text-accent">Angular</span>.
           </p>
           <div>
             <p className="text-lg leading-relaxed text-muted">{profile.summary}</p>

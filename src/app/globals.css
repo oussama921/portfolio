@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fbfbfa;
+  --surface: #ffffff;
+  --foreground: #161616;
+  --muted: #6b6b6b;
+  --line: #e4e4e2;
+  --accent: #e0245e;
+  --accent-soft: #fde7ee;
+  --ink: #1b1b1b;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #111111;
+    --surface: #181818;
+    --foreground: #ededed;
+    --muted: #9a9a9a;
+    --line: #2a2a2a;
+    --accent: #ff4f82;
+    --accent-soft: #3b1422;
+    --ink: #1b1b1b;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-ink: var(--ink);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-archivo);
+  --animate-marquee: marquee 28s linear infinite;
+  --animate-portrait-in: portrait-in 1.8s cubic-bezier(0.2, 0.7, 0.2, 1) 0.5s both;
+  --animate-float: float 7s ease-in-out 2.3s infinite;
+  --animate-rise: rise 1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-fade: fade 1s ease-out both;
+}
+
+/* Shared page width: fluid gutters, capped wide enough to fill large screens */
+@utility page-x {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1600px;
+  padding-inline: 1rem;
+  @media (width >= 40rem) {
+    padding-inline: 2rem;
+  }
+  @media (width >= 80rem) {
+    padding-inline: 3rem;
+  }
+}
+
+/* Small, wide, letter-spaced caps used for section labels and table headers */
+@utility eyebrow {
+  font-family: var(--font-archivo);
+  font-stretch: 125%;
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Hero intro: black screen -> portrait settles in and floats -> text arrives */
+@keyframes portrait-in {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(1.08);
+  }
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-portrait-in,
+  .animate-float,
+  .animate-rise,
+  .animate-fade {
+    animation: none;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  /* No offset: every section's top padding (≥ 6rem) already clears the 5rem fixed header */
+  scroll-padding-top: 0;
+}
+
+/* Land menu jumps deeper into each section's top padding (8rem from sm up),
+   so headings sit just below the 5rem header. Phones keep 0: their padding is only 6rem. */
+@media (width >= 40rem) {
+  section[id] {
+    scroll-margin-top: -2.5rem;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--background);
+}
